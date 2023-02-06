@@ -13,7 +13,12 @@ class AsyncForm {
    * через registerEvents()
    * */
   constructor(element) {
+    if (!element) {
+      throw new Error("переданный элемент не существует");
+    }
 
+    this.element = element;
+    this.registerEvents();
   }
 
   /**
@@ -21,7 +26,9 @@ class AsyncForm {
    * вызывает метод submit()
    * */
   registerEvents() {
-
+    const id = this.element.id
+    const btnPrimary = document.querySelector(`.btn[form=${id}]`);
+    btnPrimary.addEventListener('click', this.submit);
   }
 
   /**
@@ -31,19 +38,34 @@ class AsyncForm {
    *  'название поля формы 2': 'значение поля формы 2'
    * }
    * */
-  getData() {
+  getData(form) {
+    const formData = new FormData(form);
 
+    const entries = formData.entries();
+    let data = {};
+    for (let item of entries) {
+      const key = item[0];
+      const value = item[1];
+      data[key] = value;
+    }
+    return data;
   }
 
   onSubmit(options){
-
+    console.log(options); // для кажджой формы свой метод, надо еще дописать
   }
 
   /**
    * Вызывает метод onSubmit и передаёт туда
    * данные, полученные из метода getData()
    * */
-  submit() {
+  submit(e) {
+    e.preventDefault();
+    const form = e.currentTarget.form;
 
+    const asyncForm = new AsyncForm(form);
+    const dataForm = asyncForm.getData(form);
+
+   asyncForm.onSubmit(dataForm);
   }
 }

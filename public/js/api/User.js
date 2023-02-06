@@ -3,13 +3,18 @@
  * регистрацией пользователя из приложения
  * Имеет свойство URL, равное '/user'.
  * */
+const keyName = 'user';
 class User {
+   static constructor() {
+   this.URL = '/user';
+  }
+
   /**
    * Устанавливает текущего пользователя в
    * локальном хранилище.
    * */
   static setCurrent(user) {
-
+    localStorage.setItem(keyName, JSON.stringify(user));
   }
 
   /**
@@ -17,7 +22,7 @@ class User {
    * пользователе из локального хранилища.
    * */
   static unsetCurrent() {
-
+    localStorage.removeItem(keyName);
   }
 
   /**
@@ -25,7 +30,7 @@ class User {
    * из локального хранилища
    * */
   static current() {
-
+    return JSON.parse(localStorage.getItem(keyName))? JSON.parse(localStorage.getItem(keyName)) : undefined
   }
 
   /**
@@ -33,8 +38,39 @@ class User {
    * авторизованном пользователе.
    * */
   static fetch(callback) {
+                                  /* it's necessary from  callback a object like this
+                                  {
+                                  "success": true,
+                                      "user": {
+                                    "id": 2,
+                                        "name": "Vlad",
+                                        "email": "l@l.one",
+                                        "created_at": "2019-03-06 18:46:41",
+                                        "updated_at": "2019-03-06 18:46:41"
+                                  }
+                                }
+                                */
 
+// console.log(callback);
+    const xhr = createRequest({
+      // url: this.URL + '/current',
+      url: 'file:///D:/OSPanel/domains/Marina/JavaScript/bhj-diploma/public/user/current',
+      // data: ,
+      method: 'GET',
+
+      // задаём функцию обратного вызова
+      callback(err, response) {
+        if (response && response.user) {
+          User.setCurrent(response.user);
+        }
+        // ...
+        // вызываем параметр, переданный в метод fetch
+        callback(err, response);
+      }
+      // ...
+    });
   }
+
 
   /**
    * Производит попытку авторизации.
