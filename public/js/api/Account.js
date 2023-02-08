@@ -5,15 +5,13 @@
  * */
 
 class Account extends Entity {
-    constructor() {
-      super();
-      this.URL = '/account';
-    }
+     static URL = '/account';
 
   /**
    * Получает информацию о счёте
    * */
   static get(id = '', callback){
+    console.log(this.URL);
     createRequest({
       url: this.URL,
       data: id,

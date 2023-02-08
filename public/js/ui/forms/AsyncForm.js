@@ -6,66 +6,62 @@
  * для последующей обработки
  * */
 class AsyncForm {
-  /**
-   * Если переданный элемент не существует,
-   * необходимо выкинуть ошибку.
-   * Сохраняет переданный элемент и регистрирует события
-   * через registerEvents()
-   * */
-  constructor(element) {
-    if (!element) {
-      throw new Error("переданный элемент не существует");
+    /**
+     * Если переданный элемент не существует,
+     * необходимо выкинуть ошибку.
+     * Сохраняет переданный элемент и регистрирует события
+     * через registerEvents()
+     * */
+    constructor(element) {
+        if (!element) {
+            throw new Error("переданный элемент не существует");
+        }
+
+        this.element = element;
+        this.registerEvents();
     }
 
-    this.element = element;
-    this.registerEvents();
-  }
-
-  /**
-   * Необходимо запретить отправку формы и в момент отправки
-   * вызывает метод submit()
-   * */
-  registerEvents() {
-    const id = this.element.id
-    const btnPrimary = document.querySelector(`.btn[form=${id}]`);
-    btnPrimary.addEventListener('click', this.submit);
-  }
-
-  /**
-   * Преобразует данные формы в объект вида
-   * {
-   *  'название поля формы 1': 'значение поля формы 1',
-   *  'название поля формы 2': 'значение поля формы 2'
-   * }
-   * */
-  getData(form) {
-    const formData = new FormData(form);
-
-    const entries = formData.entries();
-    let data = {};
-    for (let item of entries) {
-      const key = item[0];
-      const value = item[1];
-      data[key] = value;
+    /**
+     * Необходимо запретить отправку формы и в момент отправки
+     * вызывает метод submit()
+     * */
+    registerEvents() {
+        const id = this.element.id
+        const btnPrimary = document.querySelector(`.btn[form=${id}]`);
+        btnPrimary.addEventListener('click', (e) => this.submit(e, this));
     }
-    return data;
-  }
 
-  onSubmit(options){
-    console.log(options); // для кажджой формы свой метод, надо еще дописать
-  }
+    /**
+     * Преобразует данные формы в объект вида
+     * {
+     *  'название поля формы 1': 'значение поля формы 1',
+     *  'название поля формы 2': 'значение поля формы 2'
+     * }
+     * */
+    getData(form) {
+        const formData = new FormData(form);
 
-  /**
-   * Вызывает метод onSubmit и передаёт туда
-   * данные, полученные из метода getData()
-   * */
-  submit(e) {
-    e.preventDefault();
-    const form = e.currentTarget.form;
+        const entries = formData.entries();
+        let data = {};
+        for (let item of entries) {
+            const key = item[0];
+            const value = item[1];
+            data[key] = value;
+        }
+        return data;
+    }
 
-    const asyncForm = new AsyncForm(form);
-    const dataForm = asyncForm.getData(form);
+    onSubmit(options){
+    }
 
-   asyncForm.onSubmit(dataForm);
-  }
+    /**
+     * Вызывает метод onSubmit и передаёт туда
+     * данные, полученные из метода getData()
+     * */
+    submit(e, currentObject) {
+        e.preventDefault();
+        const form = e.currentTarget.form;
+        const dataForm = currentObject.getData(form);
+        currentObject.onSubmit(dataForm);
+    }
 }

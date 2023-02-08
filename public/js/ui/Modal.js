@@ -40,7 +40,9 @@ class Modal {
   onClose(e) {
     e.preventDefault();
 
-    const modalId = e.currentTarget.closest('.modal').dataset.modalId
+    const form = e.currentTarget.closest('.modal-dialog').querySelector('.form');
+    form.reset();
+    const modalId = e.currentTarget.closest('.modal').dataset.modalId;
     App.getModal(modalId).close();
   }
   /**

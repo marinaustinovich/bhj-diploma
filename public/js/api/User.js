@@ -3,10 +3,15 @@
  * регистрацией пользователя из приложения
  * Имеет свойство URL, равное '/user'.
  * */
+// const fnc = function showResponce(err, response) {
+//   console.log(response);
+// };
+
 const keyName = 'user';
+
 class User {
    static constructor() {
-   this.URL = '/user';
+      this.URL = '/user';
   }
 
   /**
@@ -30,44 +35,32 @@ class User {
    * из локального хранилища
    * */
   static current() {
-    return JSON.parse(localStorage.getItem(keyName))? JSON.parse(localStorage.getItem(keyName)) : undefined
+    if (localStorage.getItem(keyName) === 'undefined') {
+      return undefined;
+    }
+    return JSON.parse(localStorage.getItem(keyName));
   }
 
   /**
    * Получает информацию о текущем
    * авторизованном пользователе.
    * */
+
   static fetch(callback) {
-                                  /* it's necessary from  callback a object like this
-                                  {
-                                  "success": true,
-                                      "user": {
-                                    "id": 2,
-                                        "name": "Vlad",
-                                        "email": "l@l.one",
-                                        "created_at": "2019-03-06 18:46:41",
-                                        "updated_at": "2019-03-06 18:46:41"
-                                  }
-                                }
-                                */
+    this.constructor();
 
-// console.log(callback);
-    const xhr = createRequest({
-      // url: this.URL + '/current',
-      url: 'file:///D:/OSPanel/domains/Marina/JavaScript/bhj-diploma/public/user/current',
-      // data: ,
+    createRequest({
+      url: this.URL + '/current',
+      data: callback(),
       method: 'GET',
-
-      // задаём функцию обратного вызова
-      callback(err, response) {
+      callback: (err, response)=> {
         if (response && response.user) {
-          User.setCurrent(response.user);
+          this.setCurrent(response.user);
+        } else {
+          this.unsetCurrent();
+          alert('Необходима авторизация');
         }
-        // ...
-        // вызываем параметр, переданный в метод fetch
-        callback(err, response);
       }
-      // ...
     });
   }
 
@@ -79,14 +72,17 @@ class User {
    * User.setCurrent.
    * */
   static login(data, callback) {
+    this.constructor();
     createRequest({
       url: this.URL + '/login',
+      data: data,
       method: 'POST',
       responseType: 'json',
-      data,
       callback: (err, response) => {
         if (response && response.user) {
           this.setCurrent(response.user);
+        } else {
+          alert(`Пользователь c email ${data.email} и паролем ${data.password} не найден`);
         }
         callback(err, response);
       }
@@ -100,7 +96,22 @@ class User {
    * User.setCurrent.
    * */
   static register(data, callback) {
+    this.constructor();
+    createRequest({
+      url: this.URL + '/register',
+      data: data,
+      method: 'POST',
+      responseType: 'json',
+      callback: (err, response) => {
+        if (response && response.success) {
+          this.setCurrent(response.user);
+        } else {
+          alert(response.error);
+        }
 
+        callback(err, response);
+      }
+    });
   }
 
   /**
@@ -108,6 +119,21 @@ class User {
    * выхода необходимо вызвать метод User.unsetCurrent
    * */
   static logout(callback) {
+    this.constructor();
+    createRequest({
+      url: this.URL + '/logout',
+      data: {},
+      method: 'POST',
+      responseType: 'json',
+      callback: (err, response) => {
+        if (response && response.success) {
+          this.unsetCurrent();
+        } else {
+          console.log(response.error);
+        }
+        callback(err, response);
+      }
+    });
 
   }
 }

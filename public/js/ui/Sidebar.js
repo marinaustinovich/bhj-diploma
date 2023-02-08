@@ -40,21 +40,18 @@ class Sidebar {
     const register = document.querySelector('.menu-item_register');
     const logout = document.querySelector('.menu-item_logout');
 
-    function showLoginWindow() {
-      App.getModal('login').open();
-    }
-    login.addEventListener('click', showLoginWindow);
 
-    function showRegisterWindow() {
-      App.getModal('register').open();
-    }
-    register.addEventListener('click', showRegisterWindow);
+    login.addEventListener('click', () =>  App.getModal('login').open());
+    register.addEventListener('click', () =>App.getModal('register').open());
 
     function logoutUser() {
-      if (User.logout()) {
-        App.setState('init');
-      }
+      User.logout((err, response) => {
+          if (response.success) {
+            App.setState('init');
+          }
+        })
     }
     logout.addEventListener('click', logoutUser)
   }
+
 }

@@ -336,8 +336,8 @@ console.log( current ); // undefined
 Например:
 
 ```javascript
-User.fetch(( err, response ) => {
-  console.log( response.user.id ); // 2
+User.fetch((err, response) => {
+    console.log(response.user.id); // 2
 });
 ```
 
@@ -355,9 +355,9 @@ User.fetch(( err, response ) => {
 
 ```javascript
 console.log( User.current()); // undefined
-User.fetch(( err, response ) => {
-  console.log( response.user.name ); // Vlad
-  console.log( User.current().name ); // Vlad
+User.fetch((err, response) => {
+    console.log(response.user.name); // Vlad
+    console.log(User.current().name); // Vlad
 });
 ```
 
@@ -366,11 +366,11 @@ User.fetch(( err, response ) => {
 
 ```javascript
 console.log( User.current()); // { id: 47, name: 'Vlad' }
-User.fetch(( err, response ) => {
-  // Оказалось, что пользователь уже больше не авторизован (истекла сессия)
-  console.log( response.user ); // undefined
-  console.log( response.success ); // false
-  console.log( User.current() ); // undefined
+User.fetch((err, response) => {
+    // Оказалось, что пользователь уже больше не авторизован (истекла сессия)
+    console.log(response.user); // undefined
+    console.log(response.success); // false
+    console.log(User.current()); // undefined
 });
 ```
 

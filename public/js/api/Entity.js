@@ -1,15 +1,9 @@
-const functionVar = function addRowsToTable(rows) {
-    console.log(rows);
-}
-
 /**
  * Класс Entity - базовый для взаимодействия с сервером.
  * Имеет свойство URL, равно пустой строке.
  * */
 class Entity {
-    static constructor() {
-        this.URL = '';
-    }
+    static URL = '';
 
     /**
      * Запрашивает с сервера список данных.

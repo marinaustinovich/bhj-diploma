@@ -3,10 +3,11 @@
  * на сервер.
  * */
 const createRequest = (options = {}) => {
+    const fnc = options.callback;
     const xhr = new XMLHttpRequest();
 
         if (options.method === 'GET') {
-            console.log(options.url);
+            console.log(options);
             try {
                 xhr.open(options.method, options.url, true);
                 xhr.responseType = 'json';
@@ -18,13 +19,14 @@ const createRequest = (options = {}) => {
                 return;
             }
         } else {
+            console.log(options);
             const formData = new FormData();
-            formData.append('mail', options.data.email);
+            formData.append('email', options.data.email);
             formData.append('password', options.data.password);
+            formData.append('name', options.data.name);
             try {
                 xhr.open(options.method, options.url, true);
                 xhr.responseType = 'json';
-                // xhr.withCredentials = true;
                 xhr.send(formData);
             }
             catch (e) {
@@ -34,12 +36,12 @@ const createRequest = (options = {}) => {
             }
         }
 
-
     xhr.onreadystatechange = function (options= {}) {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            options.callback(null, xhr.response);
+            console.log(xhr.response);
+            fnc(null, xhr.response);
         } else if (xhr.status >= 400) {
-            options.callback(new Error(xhr.statusText));
+            fnc(new Error(xhr.statusText));
         }
     }
 };
