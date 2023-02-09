@@ -14,7 +14,7 @@ class Account extends Entity {
     console.log(this.URL);
     createRequest({
       url: this.URL,
-      data: id,
+      data: {account_id: id},
       method: 'GET',
       callback: callback,
     });

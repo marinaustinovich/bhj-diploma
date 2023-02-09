@@ -197,34 +197,14 @@
       "id": "3"
     },
     {
-      "name": "Марина",
+      "name": "Bank",
       "user_id": "9a53jw88ldvbqrgx",
-      "id": "9a53j17uoldvg5h5s"
+      "id": "9a53j1jholdx31mip"
     },
     {
-      "name": "Bank account",
+      "name": "Job",
       "user_id": "9a53jw88ldvbqrgx",
-      "id": "9a53j18n0ldvgo6jf"
-    },
-    {
-      "name": "Work",
-      "user_id": "9a53jw88ldvbqrgx",
-      "id": "9a53jtjwldvgpz2y"
-    },
-    {
-      "name": "Study",
-      "user_id": "9a53jw88ldvbqrgx",
-      "id": "9a53j19qkldvgs3ca"
-    },
-    {
-      "name": "Папа",
-      "user_id": "9a53jw88ldvbqrgx",
-      "id": "9a53j1acoldvl4h5c"
-    },
-    {
-      "name": "Mom",
-      "user_id": "9a53jw88ldvbqrgx",
-      "id": "9a53jx3oldvlduft"
+      "id": "9a53j17x8ldxaqs2p"
     }
   ],
   "transactions": [
@@ -362,6 +342,24 @@
       "sum": 300000,
       "type": "expense",
       "user_id": "1"
+    },
+    {
+      "id": "9a53jx3kldx32ang",
+      "type": "income",
+      "name": "Премия",
+      "sum": 5000,
+      "account_id": "9a53j1jholdx31mip",
+      "user_id": "9a53jw88ldvbqrgx",
+      "created_at": "2023-02-09T12:35:46.155Z"
+    },
+    {
+      "id": "9a53jzmkldxasyl7",
+      "type": "income",
+      "name": "Mom",
+      "sum": 15000,
+      "account_id": "9a53j17x8ldxaqs2p",
+      "user_id": "9a53jw88ldvbqrgx",
+      "created_at": "2023-02-09T16:12:27.546Z"
     }
   ]
 }

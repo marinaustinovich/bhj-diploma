@@ -7,8 +7,17 @@ const createRequest = (options = {}) => {
     const xhr = new XMLHttpRequest();
 
         if (options.method === 'GET') {
-            console.log(options);
             try {
+                let arrKeysValuesData = Object.entries(options.data);
+                console.log(arrKeysValuesData);
+                for (let i = 0; i < arrKeysValuesData.length; i ++) {
+                    arrKeysValuesData[i] = arrKeysValuesData[i].join('=');
+                }
+
+                arrKeysValuesData = arrKeysValuesData.join('&');
+                console.log(arrKeysValuesData);
+                options.url = options.url + '?' + arrKeysValuesData;
+                console.log(options.url);
                 xhr.open(options.method, options.url, true);
                 xhr.responseType = 'json';
                 xhr.send();
@@ -19,12 +28,22 @@ const createRequest = (options = {}) => {
                 return;
             }
         } else {
-            console.log(options);
-            const formData = new FormData();
-            formData.append('email', options.data.email);
-            formData.append('password', options.data.password);
-            formData.append('name', options.data.name);
             try {
+                const formData = new FormData();
+
+                    if (options.method === 'PUT') {
+                        formData.append('type', options.data.type);
+                        formData.append('account_id', options.data.account_id);
+                        formData.append('sum', options.data.sum);
+                        formData.append('name', options.data.name);
+                    }  else if (options.method === 'DELETE') {
+                        formData.append('id', options.data.account_id);
+                    } else {
+                        formData.append('email', options.data.email);
+                        formData.append('password', options.data.password);
+                        formData.append('name', options.data.name);
+                }
+
                 xhr.open(options.method, options.url, true);
                 xhr.responseType = 'json';
                 xhr.send(formData);

@@ -19,9 +19,8 @@ class AccountsWidget {
     }
 
     this.element = element;
-    this.update();
     this.registerEvents();
-
+    this.update();
   }
 
   /**
@@ -33,15 +32,7 @@ class AccountsWidget {
    * */
   registerEvents() {
     const createAccount = document.querySelector('.create-account');
-    // const accounts = document.querySelectorAll('.account');
-    // console.log(accounts);
-
     createAccount.addEventListener('click', () => App.getModal('newAccount').open());
-
-    // for (let item of accounts) {
-      // console.log(item);
-      // item.addEventListener('click', () => this.onSelectAccount());
-    // }
   }
 
   /**

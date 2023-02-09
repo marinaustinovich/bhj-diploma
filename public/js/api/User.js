@@ -3,10 +3,6 @@
  * регистрацией пользователя из приложения
  * Имеет свойство URL, равное '/user'.
  * */
-// const fnc = function showResponce(err, response) {
-//   console.log(response);
-// };
-
 const keyName = 'user';
 
 class User {
@@ -47,14 +43,16 @@ class User {
    * */
 
   static fetch(callback) {
-    this.constructor();
-
+    // this.constructor();
+console.log(this.URL);
     createRequest({
       url: this.URL + '/current',
       data: callback(),
       method: 'GET',
       callback: (err, response)=> {
-        if (response && response.user) {
+        console.log(this.URL);
+        if (response && response.user.name !== 'undefined') {
+          console.log(response.user.name);
           this.setCurrent(response.user);
         } else {
           this.unsetCurrent();
@@ -72,7 +70,7 @@ class User {
    * User.setCurrent.
    * */
   static login(data, callback) {
-    this.constructor();
+    // this.constructor();
     createRequest({
       url: this.URL + '/login',
       data: data,
@@ -96,7 +94,7 @@ class User {
    * User.setCurrent.
    * */
   static register(data, callback) {
-    this.constructor();
+    // this.constructor();
     createRequest({
       url: this.URL + '/register',
       data: data,
