@@ -6,9 +6,7 @@
 const keyName = 'user';
 
 class User {
-   static constructor() {
-      this.URL = '/user';
-  }
+      static URL = '/user';
 
   /**
    * Устанавливает текущего пользователя в
@@ -43,20 +41,16 @@ class User {
    * */
 
   static fetch(callback) {
-    // this.constructor();
-console.log(this.URL);
     createRequest({
       url: this.URL + '/current',
       data: callback(),
       method: 'GET',
       callback: (err, response)=> {
-        console.log(this.URL);
-        if (response && response.user.name !== 'undefined') {
-          console.log(response.user.name);
+        if (response && response.user) {
           this.setCurrent(response.user);
         } else {
-          this.unsetCurrent();
           alert('Необходима авторизация');
+          this.unsetCurrent();
         }
       }
     });
@@ -70,21 +64,25 @@ console.log(this.URL);
    * User.setCurrent.
    * */
   static login(data, callback) {
-    // this.constructor();
-    createRequest({
-      url: this.URL + '/login',
-      data: data,
-      method: 'POST',
-      responseType: 'json',
-      callback: (err, response) => {
-        if (response && response.user) {
-          this.setCurrent(response.user);
-        } else {
-          alert(`Пользователь c email ${data.email} и паролем ${data.password} не найден`);
+    if (data.email !== '') {
+      createRequest({
+        url: this.URL + '/login',
+        data: data,
+        method: 'POST',
+        responseType: 'json',
+        callback: (err, response) => {
+          if (response && response.user) {
+            this.setCurrent(response.user);
+          } else {
+            alert(`Пользователь c email ${data.email} и паролем ${data.password} не найден`);
+          }
+
+          callback(err, response);
         }
-        callback(err, response);
-      }
-    });
+      });
+    } else {
+      alert('Введите email!');
+    }
   }
 
   /**
@@ -94,7 +92,6 @@ console.log(this.URL);
    * User.setCurrent.
    * */
   static register(data, callback) {
-    // this.constructor();
     createRequest({
       url: this.URL + '/register',
       data: data,
@@ -117,7 +114,6 @@ console.log(this.URL);
    * выхода необходимо вызвать метод User.unsetCurrent
    * */
   static logout(callback) {
-    this.constructor();
     createRequest({
       url: this.URL + '/logout',
       data: {},
@@ -132,6 +128,5 @@ console.log(this.URL);
         callback(err, response);
       }
     });
-
   }
 }

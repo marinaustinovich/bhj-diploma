@@ -5,25 +5,26 @@
 const createRequest = (options = {}) => {
     const fnc = options.callback;
     const xhr = new XMLHttpRequest();
-
         if (options.method === 'GET') {
+            console.log(options);
             try {
-                let arrKeysValuesData = Object.entries(options.data);
-                console.log(arrKeysValuesData);
-                for (let i = 0; i < arrKeysValuesData.length; i ++) {
-                    arrKeysValuesData[i] = arrKeysValuesData[i].join('=');
+                if (options.data) {
+                    let arrKeysValuesData = Object.entries(options.data);
+                    for (let i = 0; i < arrKeysValuesData.length; i ++) {
+                        arrKeysValuesData[i] = arrKeysValuesData[i].join('=');
+                    }
+
+                    arrKeysValuesData = arrKeysValuesData.join('&');
+                    options.url = options.url + '?' + arrKeysValuesData;
                 }
 
-                arrKeysValuesData = arrKeysValuesData.join('&');
-                console.log(arrKeysValuesData);
-                options.url = options.url + '?' + arrKeysValuesData;
-                console.log(options.url);
                 xhr.open(options.method, options.url, true);
                 xhr.responseType = 'json';
                 xhr.send();
             }
             catch (e) {
                 // перехват сетевой ошибки
+                console.log(e);
                 options.callback(e, null);
                 return;
             }
@@ -36,12 +37,14 @@ const createRequest = (options = {}) => {
                         formData.append('account_id', options.data.account_id);
                         formData.append('sum', options.data.sum);
                         formData.append('name', options.data.name);
+
                     }  else if (options.method === 'DELETE') {
                         formData.append('id', options.data.account_id);
                     } else {
                         formData.append('email', options.data.email);
                         formData.append('password', options.data.password);
                         formData.append('name', options.data.name);
+
                 }
 
                 xhr.open(options.method, options.url, true);
@@ -50,6 +53,7 @@ const createRequest = (options = {}) => {
             }
             catch (e) {
                 // перехват сетевой ошибки
+                console.log(e);
                 options.callback(e, null);
                 return;
             }
@@ -60,7 +64,8 @@ const createRequest = (options = {}) => {
             console.log(xhr.response);
             fnc(null, xhr.response);
         } else if (xhr.status >= 400) {
-            fnc(new Error(xhr.statusText));
+            console.log(xhr.response);
+            fnc(new Error(xhr.statusText), null);
         }
     }
 };

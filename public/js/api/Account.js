@@ -11,7 +11,6 @@ class Account extends Entity {
    * Получает информацию о счёте
    * */
   static get(id = '', callback){
-    console.log(this.URL);
     createRequest({
       url: this.URL,
       data: {account_id: id},

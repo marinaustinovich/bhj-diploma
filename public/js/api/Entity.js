@@ -25,8 +25,6 @@ class Entity {
      * что наследуется от Entity)
      * */
     static create(data, callback) {
-        console.log('transaction');
-        console.log(data);
         createRequest({
             url: this.URL,
             data: data,
