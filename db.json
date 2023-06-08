@@ -7,215 +7,23 @@
       "id": "1"
     },
     {
-      "password": "123",
-      "id": "9a53j11jwldu1de42"
-    },
-    {
-      "password": "123",
-      "id": "9a53j13mwldu1l435"
-    },
-    {
-      "password": "123",
-      "id": "9a53jz3cldu5nhz1"
-    },
-    {
-      "name": "Марина",
-      "password": "123",
-      "id": "9a53j14gkldu6dcek"
-    },
-    {
-      "name": "Марина",
-      "password": "123",
-      "id": "9a53jov8ldu6xt4n"
-    },
-    {
-      "name": "Марина",
-      "password": "123",
-      "id": "9a53jzf0ldu77mzd"
-    },
-    {
-      "name": "Марина",
-      "password": "123",
-      "id": "9a53jzf0ldu77mzy"
-    },
-    {
-      "name": "Марина",
-      "password": "123",
-      "id": "9a53j1388ldu78xc7"
-    },
-    {
-      "name": "Марина",
-      "password": "123",
-      "id": "9a53j12ccldu7awt4"
-    },
-    {
-      "name": "Марина",
-      "password": "123",
-      "id": "9a53jz2kldu7kiot"
-    },
-    {
-      "name": "Марина",
-      "password": "123",
-      "id": "9a53jyvgldu7liwn"
-    },
-    {
-      "name": "Марина",
-      "password": "123",
-      "id": "9a53jwgcldu7rpu2"
-    },
-    {
-      "name": "Марина",
-      "password": "123",
-      "id": "9a53j7icldu7uq77"
-    },
-    {
-      "name": "Марина",
-      "password": "123",
-      "id": "9a53j1248ldu7v1jy"
-    },
-    {
-      "name": "Марина",
-      "password": "123",
-      "id": "9a53jkkoldu83gqk"
-    },
-    {
-      "name": "Марина",
-      "password": "123",
-      "id": "9a53jyjoldu8clx7"
-    },
-    {
-      "name": "Марина",
-      "password": "123",
-      "id": "9a53j12v8ldu8e70q"
-    },
-    {
-      "name": "Марина",
-      "password": "123",
-      "id": "9a53jwi8ldu8oldp"
-    },
-    {
-      "name": "Марина",
-      "password": "123",
-      "id": "9a53jqn0ldu8sq1u"
-    },
-    {
-      "name": "Марина",
-      "password": "123",
-      "id": "9a53j6mkldu8v4rk"
-    },
-    {
-      "name": "Маргарита",
-      "password": "123",
-      "id": "9a53jy6wldu8w0xh"
-    },
-    {
-      "name": "Марина",
-      "password": "123",
-      "id": "9a53jvoldu91h7o"
-    },
-    {
-      "name": "Марина",
-      "email": "marishka0509@mail.ru",
-      "password": "123",
-      "id": "9a53j10kldualnrq"
-    },
-    {
-      "name": "Марина",
-      "email": "parapupkin@rambler.ru",
-      "password": "123",
-      "id": "9a53j153cldubh7k9"
-    },
-    {
-      "name": "Dodo",
-      "email": "dod@test.ru",
-      "password": "123",
-      "id": "9a53j12xcldubtdo7"
-    },
-    {
-      "name": "Маргарита",
-      "email": "merchant@merchant.merchant",
-      "password": "123",
-      "id": "9a53jyf0ldubuvt5"
-    },
-    {
-      "name": "Маргарита",
-      "email": "margo@test.ru",
-      "password": "123",
-      "id": "9a53jy40ldubwfb1"
-    },
-    {
-      "name": "Вадим Устинович",
-      "email": "parapupkin@test.ru",
-      "password": "123",
-      "id": "9a53jsgslduexg9u"
-    },
-    {
-      "name": "",
-      "email": "undefined",
-      "password": "undefined",
-      "id": "9a53j13d4ldugu1p8"
-    },
-    {
-      "name": "undefined",
-      "email": "",
-      "password": "",
-      "id": "9a53j1008ldv9b0qn"
-    },
-    {
-      "name": "undefined",
-      "email": "korolevich1994@mail.ru",
-      "password": "123",
-      "id": "9a53jouwldv9b7ly"
-    },
-    {
-      "name": "Марина",
-      "email": "marina@test.ru",
-      "password": "marina",
-      "id": "9a53jw88ldvbqrgx"
-    },
-    {
-      "name": "Марина",
-      "email": "marina@te",
-      "password": "",
-      "id": "9a53j10zgldvbsmqn"
-    },
-    {
       "name": "test",
       "email": "test@test.test",
       "password": "test",
       "id": "9a53j1qocldy9we4t"
+    },
+    {
+      "name": "test1",
+      "email": "test1@test.test",
+      "password": "test1test1",
+      "id": "3bzj488lin5d26a"
     }
   ],
   "accounts": [
     {
-      "name": "Банк",
-      "user_id": "1",
-      "id": "1"
-    },
-    {
-      "name": "Магазин",
-      "user_id": "1",
-      "id": "2"
-    },
-    {
-      "name": "Бизнес",
-      "user_id": "1",
-      "id": "3"
-    },
-    {
-      "name": "Job",
-      "user_id": "9a53jw88ldvbqrgx",
-      "id": "9a53j17x8ldxaqs2p"
-    },
-    {
-      "name": "Bank",
-      "user_id": "9a53jw88ldvbqrgx",
-      "id": "9a53jq24ldy4qbcm"
-    },
-    {
-      "name": "Марина",
-      "user_id": "9a53j1qocldy9we4t",
-      "id": "9a53j1r1oldy9x0no"
+      "name": "Mom",
+      "user_id": "3bzj488lin5d26a",
+      "id": "3bzjjyolin5dp14"
     }
   ],
   "transactions": [
@@ -382,22 +190,31 @@
       "created_at": "2023-02-10T08:33:53.096Z"
     },
     {
-      "id": "9a53j1fzkldy9vc9d",
-      "type": "expense",
-      "name": "is_admin",
+      "id": "3bzjay0lin5dws2",
+      "type": "income",
+      "name": "London",
       "sum": 100,
-      "account_id": "9a53jq24ldy4qbcm",
-      "user_id": "9a53jw88ldvbqrgx",
-      "created_at": "2023-02-10T08:34:05.136Z"
+      "account_id": "3bzjjyolin5dp14",
+      "user_id": "3bzj488lin5d26a",
+      "created_at": "2023-06-08T13:01:37.201Z"
     },
     {
-      "id": "9a53joqwldy9xcfc",
+      "id": "3bzj1d0lin5h5us",
       "type": "income",
-      "name": "work",
-      "sum": 5000,
-      "account_id": "9a53j1r1oldy9x0no",
-      "user_id": "9a53j1qocldy9we4t",
-      "created_at": "2023-02-10T08:35:38.663Z"
+      "name": "Party",
+      "sum": 20,
+      "account_id": "3bzjjyolin5dp14",
+      "user_id": "3bzj488lin5d26a",
+      "created_at": "2023-06-08T13:04:08.931Z"
+    },
+    {
+      "id": "3bzj8y0lin5hixu",
+      "type": "expense",
+      "name": "Buy",
+      "sum": 30,
+      "account_id": "3bzjjyolin5dp14",
+      "user_id": "3bzj488lin5d26a",
+      "created_at": "2023-06-08T13:04:25.889Z"
     }
   ]
 }

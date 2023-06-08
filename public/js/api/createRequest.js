@@ -6,7 +6,6 @@ const createRequest = (options = {}) => {
     const fnc = options.callback;
     const xhr = new XMLHttpRequest();
         if (options.method === 'GET') {
-            console.log(options);
             try {
                 if (options.data) {
                     let arrKeysValuesData = Object.entries(options.data);
@@ -24,7 +23,7 @@ const createRequest = (options = {}) => {
             }
             catch (e) {
                 // перехват сетевой ошибки
-                console.log(e);
+                console.error(e);
                 options.callback(e, null);
                 return;
             }
@@ -61,10 +60,8 @@ const createRequest = (options = {}) => {
 
     xhr.onreadystatechange = function (options= {}) {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log(xhr.response);
             fnc(null, xhr.response);
         } else if (xhr.status >= 400) {
-            console.log(xhr.response);
             fnc(new Error(xhr.statusText), null);
         }
     }
