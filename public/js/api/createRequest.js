@@ -1,68 +1,57 @@
-/**
- * Основная функция для совершения запросов
- * на сервер.
- * */
-const createRequest = (options = {}) => {
-    const fnc = options.callback;
+// /**
+//  * Основная функция для совершения запросов
+//  * на сервер.
+//  * */
+const prepareRequest = (options = {}) => {
     const xhr = new XMLHttpRequest();
-        if (options.method === 'GET') {
-            try {
-                if (options.data) {
-                    let arrKeysValuesData = Object.entries(options.data);
-                    for (let i = 0; i < arrKeysValuesData.length; i ++) {
-                        arrKeysValuesData[i] = arrKeysValuesData[i].join('=');
-                    }
+    let data = null;
 
-                    arrKeysValuesData = arrKeysValuesData.join('&');
-                    options.url = options.url + '?' + arrKeysValuesData;
-                }
-
-                xhr.open(options.method, options.url, true);
-                xhr.responseType = 'json';
-                xhr.send();
-            }
-            catch (e) {
-                // перехват сетевой ошибки
-                console.error(e);
-                options.callback(e, null);
-                return;
-            }
-        } else {
-            try {
-                const formData = new FormData();
-
-                    if (options.method === 'PUT') {
-                        formData.append('type', options.data.type);
-                        formData.append('account_id', options.data.account_id);
-                        formData.append('sum', options.data.sum);
-                        formData.append('name', options.data.name);
-
-                    }  else if (options.method === 'DELETE') {
-                        formData.append('id', options.data.account_id);
-                    } else {
-                        formData.append('email', options.data.email);
-                        formData.append('password', options.data.password);
-                        formData.append('name', options.data.name);
-
-                }
-
-                xhr.open(options.method, options.url, true);
-                xhr.responseType = 'json';
-                xhr.send(formData);
-            }
-            catch (e) {
-                // перехват сетевой ошибки
-                console.log(e);
-                options.callback(e, null);
-                return;
-            }
+    if (options.method === 'GET' && options.data) {
+        // Prepare URL parameters for GET request
+        let params = new URLSearchParams();
+        for (let key in options.data) {
+            params.append(key, options.data[key]);
         }
-
-    xhr.onreadystatechange = function (options= {}) {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            fnc(null, xhr.response);
-        } else if (xhr.status >= 400) {
-            fnc(new Error(xhr.statusText), null);
+        options.url += '?' + params.toString();
+    } else if (options.method !== 'GET') {
+        // Prepare FormData for non-GET requests
+        data = new FormData();
+        for (let key in options.data) {
+            // If it's a DELETE request and key is 'account_id', add it as 'id'
+            if (options.method === 'DELETE' && key === 'account_id') {
+                data.append('id', options.data[key]);
+            } else {
+                data.append(key, options.data[key]);
+            }
         }
     }
+
+    xhr.open(options.method, options.url, true);
+    xhr.responseType = 'json';
+
+    return { xhr, data };
+};
+
+const sendRequest = ({ xhr, data }, callback) => {
+    try {
+        xhr.send(data);
+    } catch (e) {
+        // Catch network error
+        console.error(e);
+        callback(e, null);
+        return;
+    }
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            callback(null, xhr.response);
+        } else if (xhr.status >= 400) {
+            callback(new Error(xhr.statusText), null);
+        }
+    }
+};
+
+const createRequest = (options = {}) => {
+    const { xhr, data } = prepareRequest(options);
+    sendRequest({ xhr, data }, options.callback);
 };

@@ -17,13 +17,40 @@
       "email": "test1@test.test",
       "password": "test1test1",
       "id": "3bzj488lin5d26a"
+    },
+    {
+      "name": "test2",
+      "email": "test2@test.test",
+      "password": "test2test2",
+      "id": "3bzjlusliobeozm"
+    },
+    {
+      "name": "Марина",
+      "email": "Марина@test.test",
+      "password": "Марина",
+      "id": "3bzjvcgliobq8t3"
     }
   ],
   "accounts": [
     {
+      "name": "London",
+      "user_id": "3bzjlusliobeozm",
+      "id": "3bzjshgliobfmbp"
+    },
+    {
+      "name": "Paris",
+      "user_id": "3bzjlusliobeozm",
+      "id": "3bzjvekliobg4x9"
+    },
+    {
+      "name": "Марина",
+      "user_id": "3bzjvcgliobq8t3",
+      "id": "3bzjtmsliobra2e"
+    },
+    {
       "name": "Mom",
       "user_id": "3bzj488lin5d26a",
-      "id": "3bzjjyolin5dp14"
+      "id": "3bzjvvwliocf5x1"
     }
   ],
   "transactions": [
@@ -190,31 +217,57 @@
       "created_at": "2023-02-10T08:33:53.096Z"
     },
     {
-      "id": "3bzjay0lin5dws2",
+      "id": "3bzjutsliobfgov",
       "type": "income",
       "name": "London",
-      "sum": 100,
-      "account_id": "3bzjjyolin5dp14",
-      "user_id": "3bzj488lin5d26a",
-      "created_at": "2023-06-08T13:01:37.201Z"
+      "sum": 1000,
+      "user_id": "3bzjlusliobeozm",
+      "created_at": "2023-06-09T08:38:33.534Z"
     },
     {
-      "id": "3bzj1d0lin5h5us",
+      "id": "3bzjt4cliobfx77",
       "type": "income",
-      "name": "Party",
-      "sum": 20,
-      "account_id": "3bzjjyolin5dp14",
-      "user_id": "3bzj488lin5d26a",
-      "created_at": "2023-06-08T13:04:08.931Z"
+      "name": "Mom",
+      "sum": 500,
+      "account_id": "3bzjshgliobfmbp",
+      "user_id": "3bzjlusliobeozm",
+      "created_at": "2023-06-09T08:38:54.930Z"
     },
     {
-      "id": "3bzj8y0lin5hixu",
-      "type": "expense",
-      "name": "Buy",
-      "sum": 30,
-      "account_id": "3bzjjyolin5dp14",
+      "id": "3bzjv40liobgf8p",
+      "type": "income",
+      "name": "Mom",
+      "sum": 2000,
+      "account_id": "3bzjvekliobg4x9",
+      "user_id": "3bzjlusliobeozm",
+      "created_at": "2023-06-09T08:39:18.312Z"
+    },
+    {
+      "id": "3bzjw0wliocyk29",
+      "type": "income",
+      "name": "Марина",
+      "sum": 100,
+      "account_id": "3bzjvvwliocf5x1",
       "user_id": "3bzj488lin5d26a",
-      "created_at": "2023-06-08T13:04:25.889Z"
+      "created_at": "2023-06-09T09:21:23.984Z"
+    },
+    {
+      "id": "3bzjvzoliod2v5d",
+      "type": "income",
+      "name": "London",
+      "sum": 500,
+      "account_id": "3bzjvvwliocf5x1",
+      "user_id": "3bzj488lin5d26a",
+      "created_at": "2023-06-09T09:24:44.976Z"
+    },
+    {
+      "id": "3bzjuvkliod317p",
+      "type": "expense",
+      "name": "test2",
+      "sum": 100,
+      "account_id": "3bzjvvwliocf5x1",
+      "user_id": "3bzj488lin5d26a",
+      "created_at": "2023-06-09T09:24:52.836Z"
     }
   ]
 }

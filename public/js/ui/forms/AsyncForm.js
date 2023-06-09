@@ -26,9 +26,7 @@ class AsyncForm {
      * вызывает метод submit()
      * */
     registerEvents() {
-        const id = this.element.id
-        const btnPrimary = document.querySelector(`.btn[form=${id}]`);
-        btnPrimary.addEventListener('click', (e) => this.submit(e, this));
+        this.element.addEventListener('submit', (e) => this.submit(e));
     }
 
     /**
@@ -38,17 +36,9 @@ class AsyncForm {
      *  'название поля формы 2': 'значение поля формы 2'
      * }
      * */
-    getData(form) {
-        const formData = new FormData(form);
-
-        const entries = formData.entries();
-        let data = {};
-        for (let item of entries) {
-            const key = item[0];
-            const value = item[1];
-            data[key] = value;
-        }
-        return data;
+    getData() {
+        const formData = new FormData(this.element);
+        return Object.fromEntries(formData.entries());
     }
 
     onSubmit(options){
@@ -58,10 +48,9 @@ class AsyncForm {
      * Вызывает метод onSubmit и передаёт туда
      * данные, полученные из метода getData()
      * */
-    submit(e, currentObject) {
+    submit(e) {
         e.preventDefault();
-        const form = e.currentTarget.form;
-        const dataForm = currentObject.getData(form);
-        currentObject.onSubmit(dataForm);
+        const dataForm = this.getData();
+        this.onSubmit(dataForm);
     }
 }
